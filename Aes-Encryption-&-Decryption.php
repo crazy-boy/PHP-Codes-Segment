@@ -1,6 +1,5 @@
 <?php
 
-
 /**
 * 利用mcrypt做AES加密解密
 * 支持密钥：64bit（字节长度8）
@@ -18,7 +17,7 @@ class Aes{
      * @param string $key	密钥(8位)
      * @return string   密文
      */
-    public static function encode($str,$key){
+    public static function encryption($str,$key){
         $size = mcrypt_get_block_size ( MCRYPT_DES, 'ecb' );
         $str = self::pkcs5_pad($str, $size);
         $iv = mcrypt_create_iv(mcrypt_get_iv_size(self::CIPHER,self::MODE),MCRYPT_RAND);
@@ -32,7 +31,7 @@ class Aes{
      * @param string $key   密钥(8位)
      * @return string   明文
      */
-    public static function decode($str,$key){
+    public static function decryption($str,$key){
         $str = base64_decode($str);
         $iv = mcrypt_create_iv(mcrypt_get_iv_size(self::CIPHER,self::MODE),MCRYPT_RAND);
         $str = trim(mcrypt_decrypt(self::CIPHER, $key, $str, self::MODE, $iv));
@@ -67,8 +66,10 @@ class Aes{
     }
 }
 
+
+//调用
 $key = 'WGiSP3UQ';
-$str = '18958019299';
-$enStr = Aes::encode($str,$key);
-$deStr = Aes::decode($enStr,$key);
+$str = '18578019432';
+$enStr = Aes::encryption($str,$key);
+$deStr = Aes::decryption($enStr,$key);
 var_dump($str,$enStr,$deStr);
