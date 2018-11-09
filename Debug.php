@@ -1,8 +1,6 @@
 <?php
+
 //调试工具类
-namespace libs;
-
-
 class Debug
 {
     /**
@@ -17,5 +15,10 @@ class Debug
         }
         echo "</pre>";
     }
-
 }
+
+//test
+$arr = [['name'=>'liLei','age'=>20],['name'=>'liLi','age'=>18]];
+$str = 'hello,just test';
+
+Debug::dump($arr,$str);
