@@ -170,12 +170,7 @@ class Str
      * @return string   处理后的字符串
      */
     public static function delRightChar($str,$char='/'){
-        $str = $str ?: '';
-        if(substr($str,-1) == $char){
-            $str = rtrim($str,$char);
-        }
-
-        return $str;
+        return rtrim($str,$char);
     }
 }
 
