@@ -19,7 +19,7 @@ class Aes{
      */
     public static function encryption($str,$key){
         $size = mcrypt_get_block_size ( MCRYPT_DES, 'ecb' );
-        $str = self::pkcs5_pad($str, $size);
+        $str = self::pkcs5Pad($str, $size);
         $iv = mcrypt_create_iv(mcrypt_get_iv_size(self::CIPHER,self::MODE),MCRYPT_RAND);
         $result = mcrypt_encrypt(self::CIPHER, $key, $str, self::MODE, $iv);
         return base64_encode($result);
@@ -35,7 +35,7 @@ class Aes{
         $str = base64_decode($str);
         $iv = mcrypt_create_iv(mcrypt_get_iv_size(self::CIPHER,self::MODE),MCRYPT_RAND);
         $str = trim(mcrypt_decrypt(self::CIPHER, $key, $str, self::MODE, $iv));
-        return  self::pkcs5_unpad($str);
+        return  self::pkcs5Unpad($str);
     }
 
     /**
@@ -44,7 +44,7 @@ class Aes{
      * @param $blocksize
      * @return string
      */
-    private static function pkcs5_pad($text, $blocksize) {
+    private static function pkcs5Pad($text, $blocksize) {
         $pad = $blocksize - (strlen($text) % $blocksize);
         return $text . str_repeat(chr($pad), $pad);
     }
@@ -54,7 +54,7 @@ class Aes{
      * @param $text
      * @return bool|string
      */
-    private static function pkcs5_unpad($text) {
+    private static function pkcs5Unpad($text) {
         $pad = ord($text{strlen($text) - 1});
         if ($pad > strlen($text)) {
             return false;

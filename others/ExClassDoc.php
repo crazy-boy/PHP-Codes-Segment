@@ -64,7 +64,8 @@ goCss;
     }
 
     // 获取注释
-    private static function getComment($var,$type="func"){
+    private static function getComment($var,$type="func"): string
+    {
         $comment = $var->getDocComment();
         switch ($type){
             case "func":
@@ -79,7 +80,7 @@ goCss;
         }
         preg_match('/\* (.*) */', $comment, $res);
         
-        return isset($res[1]) ? $res[1] : '';
+        return $res[1] ?? '';
     }
 
     // 获取方法参数信息

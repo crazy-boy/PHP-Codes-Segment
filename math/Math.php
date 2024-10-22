@@ -9,7 +9,8 @@ class Math
      * @param Integer $c
      * @return Boolean
      */
-    function judgeSquareSum($c) {
+    public static function judgeSquareSum(int $c): bool
+    {
         $i = 0;
         $j = (int)sqrt($c);
 
@@ -30,7 +31,7 @@ class Math
     /**
      * 判断指定数字是否在区间里
      * @param int|float $num    指定数字
-     * @param string $interval  区间  支持格式：(,20)、[10,5)、【20.5,)、(-∞，50.1)、(-∞,+∞)、(,)
+     * @param string $interval  区间  支持格式：(,20)、[10,5)、[20.5,)、(-∞，50.1)、(-∞,+∞)、(,)
      * @return bool
      */
     public static function isInInterval($num, $interval): bool
