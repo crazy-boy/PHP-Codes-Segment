@@ -26,4 +26,48 @@ class Math
 
         return false;
     }
+
+    /**
+     * 判断指定数字是否在区间里
+     * @param int|float $num    指定数字
+     * @param string $interval  区间  支持格式：(,20)、[10,5)、【20.5,)、(-∞，50.1)、(-∞,+∞)、(,)
+     * @return bool
+     */
+    public static function isInInterval($num, $interval): bool
+    {
+        $pattern = '/^([\[\(])(-?∞|\d*),(\+?∞|\d*)([\]\)])$/';
+        $res = preg_match($pattern, $interval, $matches);
+        if (!$res)  return false;
+
+        $leftBracket = $matches[1];
+        $leftNum = $matches[2];
+        $rightNum = $matches[3];
+        $rightBracket = $matches[4];
+
+        if ($leftNum !== '∞' && $leftNum !== '') {
+            if ($leftBracket == '[') {
+                if ($num < $leftNum) {
+                    return false;
+                }
+            } else {
+                if ($num <= $leftNum) {
+                    return false;
+                }
+            }
+        }
+
+        if ($rightNum !== '+∞' && $rightNum !== '') {
+            if ($rightBracket == ']') {
+                if ($num > $rightNum) {
+                    return false;
+                }
+            } else {
+                if ($num >= $rightNum) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
 }
