@@ -9,7 +9,7 @@ class Math
      * @param Integer $c
      * @return Boolean
      */
-    public static function judgeSquareSum(int $c): bool
+    public function judgeSquareSum(int $c): bool
     {
         $i = 0;
         $j = (int)sqrt($c);
@@ -34,7 +34,7 @@ class Math
      * @param string $interval  区间  支持格式：(,20)、[10,5)、[20.5,)、(-∞，50.1)、(-∞,+∞)、(,)
      * @return bool
      */
-    public static function isInInterval($num, $interval): bool
+    public function isInInterval($num, $interval): bool
     {
         $pattern = '/^([\[\(])(-?∞|\d*),(\+?∞|\d*)([\]\)])$/';
         $res = preg_match($pattern, $interval, $matches);
@@ -70,5 +70,28 @@ class Math
         }
 
         return true;
+    }
+
+    /**
+     * 去掉小数点后面无效的零  如：20.5060=》20.506，200.00=》200
+     * @param mixed $num 给定的数
+     * @return string 处理后的结果
+     */
+    public function removeTrailingZeros($num): string
+    {
+        return rtrim(rtrim($num, '0'),'.');
+    }
+
+    /**
+     * 随机指定范围内的一个数(可以为小数)   如：getRandomNumber(2,10,2) =》3.46
+     * @param mixed $min 范围起始数
+     * @param mixed $max 范围结束数
+     * @param int $decimals 小数点位数
+     * @return string   随机结果
+     */
+    public function getRandomNumber($min, $max, int $decimals = 2): string
+    {
+        $number = $min + mt_rand() / mt_getrandmax() * ($max - $min);
+        return number_format($number, $decimals);
     }
 }
