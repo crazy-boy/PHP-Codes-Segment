@@ -94,4 +94,53 @@ class Math
         $number = $min + mt_rand() / mt_getrandmax() * ($max - $min);
         return number_format($number, $decimals);
     }
+
+
+    /**
+     * 校验是否为偶数
+     * This function checks whether the provided integer is even.
+     *
+     * @param int $number An integer input
+     * @return bool whether the number is even or not
+     */
+    function isEven(int $number): bool
+    {
+        return $number % 2 === 0;
+    }
+
+
+    /**
+     * 校验是否为奇数
+     * This function checks whether the provided integer is odd.
+     *
+     * @param int $number An integer input
+     * @return bool whether the number is odd or not
+     */
+    function isOdd(int $number): bool
+    {
+        return $number % 2 !== 0;
+    }
+
+    /**
+     * 获取数字数组的中值
+     * This function calculates the median value of numbers provided
+     *
+     * @param  array $numbers  A variable sized number input
+     * @return mixed $median Median of provided numbers
+     */
+    function median(array $numbers)
+    {
+        if (empty($numbers)) {
+            return null;
+        }
+
+        sort($numbers);
+        $length = count($numbers);
+        $middle = ceil($length / 2);
+        if ($length % 2 == 0) {
+            return ($numbers[$middle] + $numbers[$middle - 1]) / 2;
+        }
+
+        return $numbers[$middle - 1];
+    }
 }

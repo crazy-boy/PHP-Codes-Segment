@@ -76,4 +76,19 @@ class Arr
         return $arr1;
     }
 
+    /**
+     * 从数组里获取指定key的值，如果key不存在则返回默认值
+     *
+     * @param array $array  给定的数组
+     * @param string $key key
+     * @param mixed $default 默认值
+     * @return mixed|null
+     */
+    public static function get(array $array, $key, $default=null) {
+        if (array_key_exists($key,$array)) {
+            return $array[$key];
+        }
+        return $default;
+    }
+
 }
