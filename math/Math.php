@@ -143,4 +143,27 @@ class Math
 
         return $numbers[$middle - 1];
     }
+
+
+    /**
+     * 判断一个给定的整数是否为阿姆斯特朗数（也称纳西索斯数）
+     * This function checks if given number is Armstrong
+     * 阿姆斯特朗数 是一个三位以上的正整数，它的每个位上的数字的立方和等于它本身。例如，153 就是一个阿姆斯特朗数，因为 1^3 + 5^3 + 3^3 = 153。
+     * e.g. 153
+     * @param integer $input 待判断的整数
+     * @return boolean 是否为阿姆斯特朗数
+     */
+    function isNumberArmstrong(int $input): bool
+    {
+        $arr = array_map('intval', str_split($input));
+        $sumOfCubes = 0;
+        foreach ($arr as $num) {
+            $sumOfCubes += $num * $num * $num;
+        }
+        if ($sumOfCubes == $input) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
